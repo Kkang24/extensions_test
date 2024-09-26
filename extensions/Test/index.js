@@ -12,7 +12,9 @@
         getMenu() {
             return {
 				'print': () => {
-                    fetch("http://localhost:8383/", 
+                    var project = "project1";
+                    var user = "test";
+                    fetch(`http://localhost:8383/save?project=${project}&user=${user}`, 
                         {method: "POST", headers: {'Content-Type': 'application/json'}, 
                         body: JSON.stringify({xml: this.ide?.getSerializedRole()})}).catch(console.error);
                 }

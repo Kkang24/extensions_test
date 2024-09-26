@@ -6,10 +6,11 @@ const port = 8383
 
 app.use(express.json())
 
-app.post('/', (req, res) =>  {
+app.post('/save', (req, res) =>  {
     const xml = req.body
     console.log(xml)
     console.log(Buffer.from(xml.xml, 'base64').toString())
+    console.log(req.query)
     res.status(200).send({status: "received"})
 })
 
