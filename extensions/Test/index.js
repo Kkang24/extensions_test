@@ -9,24 +9,12 @@
             this.ide = ide;
         }
 
-        onOpenRole() {
-
-        }
-
-        getSettings() {
-            return [
-
-            ];
-        }
-
         getMenu() {
             return {
 				'print': () => {
-                    data2 = {xml: btoa(this.ide?.cloud?.username)};
-                    fetch("http://localhost:8383/", {method: "POST", headers: {'Content-Type': 'application/json'}, body: JSON.stringify(data2)}).catch(console.error);
-                    alert(this.ide?.cloud?.username);
-                    data = {xml: world.children[0].getSerializedRole()};
-                    fetch("http://localhost:8383/", {method: "POST", headers: {'Content-Type': 'application/json'}, body: JSON.stringify(data)}).catch(console.error);
+                    fetch("http://localhost:8383/", 
+                        {method: "POST", headers: {'Content-Type': 'application/json'}, 
+                        body: JSON.stringify({xml: this.ide?.getSerializedRole()})}).catch(console.error);
                 }
 
             };
@@ -63,4 +51,7 @@
 		window.StateMachine_fns.visualize = visualize;
         `;
     document.body.appendChild(s);
+
+    const queryString = window.location.search;
+    console.log(queryString);
 })();
