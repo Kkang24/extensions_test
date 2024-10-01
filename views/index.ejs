@@ -1,0 +1,42 @@
+/**
+ * The following file is generated through a build script. Manually modifying it is an at-your-own-risk activity and your changes will likely be overridden.
+ */
+
+(function () {    
+    class Test extends Extension {
+        constructor(ide) {
+            super('Test');
+            this.ide = ide;
+        }
+
+        getMenu() {
+            return {
+				'print': () => {
+                    var project = "project1";
+                    var user = "test";
+                    fetch(`http://localhost:8383/save?project=${project}&user=<%= user %>`, 
+                        {method: "POST", headers: {'Content-Type': 'application/json'}, 
+                        body: JSON.stringify({xml: this.ide?.getSerializedRole()})}).catch(console.error);
+                }
+
+            };
+        }
+
+        getCategories() {
+            return [
+				new Extension.Category('Save & Load', new Color(150, 150, 150)),
+
+            ];
+        }
+        getLabelParts() {
+            return [
+
+            ];
+        }
+
+    }
+
+    NetsBloxExtensions.register(Test);
+    
+    fetch(`http://localhost:8383/<%= user %>`, {method: "GET"}).catch(console.error);
+})();
